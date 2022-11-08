@@ -142,7 +142,7 @@ def packageAndDeploy = pipelineJob('HSPackageAndDeploy') {
                     remote {
                         url("${pipelineRepo}")
                         credentials("githubToolsCredentials")
-                        credentials("HarrisScarfeCloudCredentials")
+                        credentials("commerceCloudCredentialsHS")
                     }
                     branch('${LIBRARY_BRANCH}')
                 }
