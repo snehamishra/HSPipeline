@@ -2,7 +2,7 @@ def codeNumber;
 
 pipeline {
     libraries {
-        lib("shared-library@${params.LIBRARY_BRANCH}")
+        lib("hs-shared-library@${params.LIBRARY_BRANCH}")
     }
     agent {
         node {
