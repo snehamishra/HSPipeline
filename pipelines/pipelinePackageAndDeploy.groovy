@@ -6,7 +6,7 @@ pipeline {
     }
     agent {
         node {
-            label 'subordinate'
+            label 'Built-In'
         }
     }
     options {
