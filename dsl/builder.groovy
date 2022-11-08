@@ -106,7 +106,7 @@ class JobParameters {
 // *** JOB DEFINITION
 // ****************************
 
-def buildEveryDay = pipelineJob('BuildEveryDay') {
+def buildEveryDay = pipelineJob('HSBuildEveryDay') {
     definition {
         triggers {
             cron('H 18 * * *')
@@ -120,7 +120,7 @@ def buildEveryDay = pipelineJob('BuildEveryDay') {
                     }
                     branch('${LIBRARY_BRANCH}')
                 }
-                scriptPath('pipelines/pipelineBuildEveryDay.groovy')
+                scriptPath('pipelines/pipelineHSBuildEveryDay.groovy')
                 lightweight(false)
             }
         }
