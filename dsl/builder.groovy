@@ -134,7 +134,7 @@ JobParameters.setProjectName(buildEveryDay, projectRepoName)
 JobParameters.setSonarUrl(buildEveryDay, sonarUrl)
 JobParameters.setPackageToTest(buildEveryDay, packageToTest)
 
-def packageAndDeploy = pipelineJob('PackageAndDeploy') {
+def packageAndDeploy = pipelineJob('HSPackageAndDeploy') {
     definition {
         cpsScm {
             scm {
