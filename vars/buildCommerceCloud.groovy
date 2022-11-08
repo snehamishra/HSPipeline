@@ -10,4 +10,4 @@ def call(branch, buildName) {
             return code_number
         }
     }
-}  
+}
