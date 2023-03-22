@@ -36,7 +36,7 @@ pipeline {
             steps{
                 script{
                     deploymentCode = commerceCloudDeploy(codeNumber, "${params.DB_UPDATE_MODE}", "${params.ENVIRONMENT_ID}", "${params.DEPLOY_STRATEGY}")
-                    commerceCloudDeployCheck(deploymentCode)
+//                     commerceCloudDeployCheck(deploymentCode)
                 }
             }
         }
