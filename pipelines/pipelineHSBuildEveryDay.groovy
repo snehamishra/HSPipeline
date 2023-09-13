@@ -10,6 +10,9 @@ pipeline {
             label 'Built-In'
         }
     }
+    tools
+            {nodejs "nodejs"
+            }
     triggers {
         cron('H 18 * * *')
     }
