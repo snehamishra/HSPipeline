@@ -106,6 +106,34 @@ class JobParameters {
 // *** JOB DEFINITION
 // ****************************
 
+def frontendBuild = pipelineJob('HSFrontendBuild') {
+    definition {
+        triggers {
+            cron('H 18 * * *')
+        }
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url("${pipelineRepo}")
+                        credentials("githubToolsCredentials")
+                    }
+                    branch('${LIBRARY_BRANCH}')
+                }
+                scriptPath('pipelines/pipelineHSBuildEveryDay.groovy')
+                lightweight(false)
+            }
+        }
+    }
+}
+JobParameters.setLogs(frontendBuild)
+JobParameters.setLibraryBranchParam(frontendBuild)
+JobParameters.setProjectRepository(frontendBuild, projectRepo)
+JobParameters.setProjectTag(frontendBuild, projectTag)
+JobParameters.setProjectName(frontendBuild, projectRepoName)
+JobParameters.setSonarUrl(frontendBuild, sonarUrl)
+JobParameters.setPackageToTest(frontendBuild, packageToTest)
+
 def buildEveryDay = pipelineJob('HSBuildEveryDay') {
     definition {
         triggers {
