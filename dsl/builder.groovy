@@ -134,33 +134,6 @@ JobParameters.setProjectName(frontendBuild, projectRepoName)
 JobParameters.setSonarUrl(frontendBuild, sonarUrl)
 JobParameters.setPackageToTest(frontendBuild, packageToTest)
 
-def buildEveryDay = pipelineJob('HSBuildEveryDay') {
-    definition {
-        triggers {
-            cron('H 18 * * *')
-        }
-        cpsScm {
-            scm {
-                git {
-                    remote {
-                        url("${pipelineRepo}")
-                        credentials("githubToolsCredentials")
-                    }
-                    branch('${LIBRARY_BRANCH}')
-                }
-                scriptPath('pipelines/pipelineHSBuildEveryDay.groovy')
-                lightweight(false)
-            }
-        }
-    }
-}
-JobParameters.setLogs(buildEveryDay)
-JobParameters.setLibraryBranchParam(buildEveryDay)
-JobParameters.setProjectRepository(buildEveryDay, projectRepo)
-JobParameters.setProjectTag(buildEveryDay, projectTag)
-JobParameters.setProjectName(buildEveryDay, projectRepoName)
-JobParameters.setSonarUrl(buildEveryDay, sonarUrl)
-JobParameters.setPackageToTest(buildEveryDay, packageToTest)
 
 def packageAndDeploy = pipelineJob('HSPackageAndDeploy') {
     definition {
@@ -197,7 +170,7 @@ JobParameters.setStrategy(packageAndDeploy)
 listView('Dev Pipelines') {
     jobs {
         names(
-            'BuildEveryDay',
+            'HSFrontendBuild',
             'PackageAndDeploy',
         )
     }
